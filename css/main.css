@@ -1,0 +1,233 @@
+/*首页*/
+.list li{background:#fff;border-radius: 5px;padding:10px;width:48%;float: left;margin-bottom:15px;}
+.list li:nth-child(2n){float: right;}
+.list li h4{max-height: 40px; line-height: 20px;}
+.list li h4 span{display: inline-block; background: url('../img/icon0.png') no-repeat;  background-size:38px 20px;width:40px; height:20px; line-height: 20px;padding-left:5px;}
+.w_minheight{height:80px;}
+.list li img.w_100{height:150px;}
+.icon{width:25px;height:25px;}
+.datils{max-height: 20px;line-height: 20px;}
+.nav{ display: flex;}
+.nav li{flex: 1;}
+.nav li img{width: 70%;margin:0 auto 5px auto;}
+.bg_top{ background: url('../img/bg_top.png') no-repeat; background-size:100%;}
+.h_search{border-radius: 50px;}
+.w_search{ position: relative;}
+.w_search span{ position: absolute;top:10px;left:10px;}
+.w_search input{padding-left:35px;border-radius:30px;}
+.address_box img.pull-right{width:18px;height:18px;}
+.address_box img.pull-left{width:15px;height:20px;}
+.address{display: inline-block;max-width: 90%;}
+.w_mrtjbg{ background: url('../img/mrtj_bg.png') no-repeat left top; background-size:100% 222px;height: 222px;}
+
+.w_list .h_45 h4 img{width: 11px;}
+.w_list a img.pull-right{width: 18px; height: 18px;}
+.w_list li img.product{width:60px; height: 60px; margin:0 auto;display: block;}
+.w_mt3{margin-top:3px;}
+.w_h30{height: 30px; line-height: 15px;}
+.w_mrtjbg .h_45 h4 img{width: 11px;}
+.w_list .swiper-slide{width:80px;margin-right:15px;}
+.w_list a{width:100%;margin-top:5px;display:inline-block;}
+.product{width:82%; margin: 0 9%;}
+.w_list h4{ height: 40px; line-height: 20px;}
+.w_through{ text-decoration:line-through;}
+.show-swiper{height: 167px;}
+.w_bggreen{ background: #ecf7f6;}
+
+.w_container  .swiper-pagination-bullet{background: #e5cec3;}
+.w_container .swiper-pagination-bullet-active{ background: #fff;}
+/*购物车*/
+.w_noshop img{width: 160px;}
+.w_noshop{ height:190px;position: absolute;top:50%;left: 50%;margin-left: -50%;margin-top:-115px;}
+.w_common input[type="checkbox"],.w_zffsbox .w_common input{display: none; visibility: hidden;}
+.w_common input[type="checkbox"]+label,.w_common input[type="checkbox"]:checked+label,.w_zffsbox .w_common input+label,.w_zffsbox  .w_common input:checked+label{display: inline-block;width: 18px; height: 18px;float: left;border-radius: 100%;}
+.w_common input[type="checkbox"]+label{border:1px solid #ddd;}
+.w_common input[type="checkbox"]:checked+label{ background: url('../img/choose.png') no-repeat; background-size:18px 18px;border: none;}
+.w_shop ul input{width:45px; height:22px; background: #f6f6f6;border: none!important;margin: 0 5px; text-align: center;font-size: 15px;border-radius: 0;}
+.w_shop input[type="checkbox"]+label,.w_shop input[type="checkbox"]:checked+label{margin-top:35px;}
+.w_shop img.pull-left{width:90px; height:90px;margin: 0 10px;}
+.w_shop h4{height: 40px; line-height: 20px;}
+.w_shop ul img{width: 12px;display: block; margin: 5px;}
+.w_qx{bottom:49px;height: 45px;}
+.w_qx input[type="checkbox"]+label,.w_qx input[type="checkbox"]:checked+label{margin:15px 10px 0 0;}
+.w_tjdd{background:linear-gradient(to left,#8fe7c4,#65dcc4);border-radius:20px;margin-top:6px;width: 100px;}
+.w_shop{padding:10px 15px;}
+/*商品详情*/
+.title{background: url('../img/titlebg.png') no-repeat top center; background-size: 150px 30px;}
+.w_b{ border-bottom: 1px dotted #707070;}
+.w_details img{max-width: 100%;width: 100%;}
+.w_shopbottom{ height: 49px; line-height: 49px;}
+.w_carshop{width: 25px; height: 25px; position: relative; margin: 0 auto;}
+.w_shopbottom .col-xs-10{padding-top:8px;}
+.w_carshop img{width: 25px;height: 25px;}
+.w_carshop span{display: inline-block; position: absolute;top:5px;right:-10px;width:18px; height:18px;text-align: center;line-height: 18px;}
+.w_tag span{ display: inline-block;padding:5px 10px; margin:0 10px 5px 0; border-radius: 15px;}
+.w_tag span:nth-child(1){ background:#ecf8eb; color:#57c74c;}
+.w_tag span:nth-child(2){ background: #ebf4fe; color: #4d99f6;}
+.w_tag span:nth-child(3){ background: #fff5e7; color: #ff9b11;}
+.w_tag span:nth-child(4){ background: #FFE7E7; color: #FF1111;}
+.w_tag span:nth-child(5){ background: #E7FDFF; color: #11F7FF;}
+/*搜索*/
+.w_mt8{margin-top:7px;}
+.w_wntj img{width: 50px; height:50px;}
+.delete{ background: #e5e4e4;padding:5px 15px;}
+.w_historicrecords a{ display: inline-block; padding: 5px 10px; background: #cbcaca; border-radius: 8px;margin:0 10px 8px 0;color: #fff;}
+/*分类*/
+.w_bgimg1.w_classtop{ height: 60px; background-size: 100% 60px;}
+.w_oneclass ul img{width: 30px; height: 30px; display: block; margin:7px auto 0 auto;}
+.w_oneclass ul li{float: left; display: inline-block; margin: 0 5px;}
+.w_oneclass ul li span{line-height:15px;font-size:10px;}
+.w_oneclass ul{height:60px;/* overflow: hidden; */}
+.w_classtop .return{margin-top:6px;}
+.w_classtop  .glyphicon-search{margin-top:6px;display: block;width: 48px; height: 48px;line-height: 48px; text-align: center;}
+.w_navtag li{height:35px; line-height:35px;overflow: hidden;font-size: 12px;}
+.taglist li a img{width:55px; height:55px;margin:5px 8px 0 0;}
+.h_number img{width: 18px; height: 18px;}
+.h_number input{width: 25px;}
+.h_number img:nth-child(1),.h_number input{display: none;}
+.w_navtag ul li.active{border-left: 2px solid #65dcc4;height: 90%;}
+/*我的*/
+.w_memberlist{padding-top:20px !important;}
+.w_memberlist li{margin-bottom: 20px;}
+.w_memberlist li img{width: 50%; margin: 0 auto;}
+.w_orderlist img{width:50% !important;}
+.w_orderlist li{margin-bottom: 0;}
+.w_orderlist{padding-top:0 !important;}
+.w_pt0{padding-top:0 !important;}
+.w_bgmember{ background:#efefef url('../img/memberbg.png') no-repeat; background-size: 100% auto;}
+.h_header{width: 60px; height: 60px; position: relative;}
+.headerimg{width: 60px; height: 60px;}
+.w_absolute{ position: absolute;bottom:0px;right:-3px;width: 23px;}
+.setup{width:60px; height: 25px;line-height: 23px;border:1px solid #4d908a;color:#4d908a; display: inline-block;border-radius: 15px;}
+.w_iconbox img{width: 60px; height: 25px;}
+.w_name{display: inline-block;max-width:25%;}
+/*登录*/
+.w_mt20{margin-top:-40px;}
+.b_r15{border-radius: 15px;}
+.w_boxform{ box-shadow: 5px 5px 10px #ddd;}
+.w_btntab span{display:block;width: 120px; height: 50px;line-height:50px;border-radius: 0 15px 0 0; background: #65dcc4; position: absolute;right: 0;top:0}
+.w_bgf5{ background: #f5f5f5;}
+.w_inputbox{ height:50px; position: relative;}
+.w_inputbox label{position: absolute;left: 12px;top:12px;}
+.w_inputbox img{width: 20px; height: 20px; }
+.w_inputbox input{ height: 42px;padding-left:30px; box-shadow: none;margin-top:3px;}
+.w_inputbox input:focus{ border: none;box-shadow:none;}
+.w_br30{border-radius: 30px;}
+.wechat{width: 50px;height: 50px;}
+.yzm input{padding-left: 43px;}
+.w_yzmlogin,.w_btntab .h_yzmbtn{display: none;}
+.w_btnbox button{width: 48%;}
+/*全部订单*/
+.w_tabs{display: flex;}
+.w_tabs li{flex: 1;line-height: 38px;}
+.w_tabs a{padding: 0 !important;line-height:23px !important;display: inline-block !important;color: #a4a3a3;}
+.w_tabs li.active a{border: none !important; border-bottom: 2px solid #81e3c4 !important; color: #43aa8b !important;}
+.w_allorderbox img{width:75px; height:75px;border:1px solid #ddd;}
+.w_content{width: 71%;margin-left:10px;}
+.w_content h4{width: 70%; height: 40px; line-height: 20px;}
+.h_order{ position: relative;}
+.qs{position: absolute;right:15px;top:5px;width:58px; opacity: .6;}
+.qs.active{ display: block;}
+.qs.hide{ display: none;}
+/*确认订单(填写备注)*/
+.h_tj{bottom:30px;}
+.w_bzcontent span{display:inline-block;padding: 5px 10px; margin:0 8px 5px 0;border-radius: 15px;}
+/*确认订单*/
+.w_noaddress{ position: relative; background: url('../img/bgimg.png') repeat-x left  bottom; background-size:30px 2px;}
+.w_noaddress img{position: absolute;right: 10px;width: 10px; height: 18px;top:50%;margin-top:-9px;}
+.w_mt12{margin-top: 12px;}
+.w_zffsbox .w_common input+label,.w_zffsbox  .w_common input:checked+label{float: right;}
+.w_zffsbox .w_common input+label{background: url('../img/h_choose.png') no-repeat; background-size: 18px 18px; border: none;}
+.w_zffsbox .w_common input:checked+label{background: url('../img/h_choose1.png') no-repeat; background-size: 18px 18px;}
+.w_zffsbox img{width: 20px; height: 20px;}
+.b_r30{border-radius: 30px;}
+.password-div input{width: 1px;height: 1px;opacity: 0;border: 0;}
+.password-lable{height: 40px;clear: both;display: block;width: 100%;}
+.password-lable li{float: left;width: 16.7%;height: 40px;line-height: 40px;text-align: center;border-right: 1px dotted #dedede;margin-left: -1px;font-size: 30px;}
+.password-lable li:last-child{border-right: none;}
+.password-div{ background: #f5f5f5;}
+/*支付订单(详细)*/
+.w_zforderbox img{width: 100px; height: 100px;}
+.w_zforderbox div{width: 64%;}
+.w_zforderbox dt{font-weight: normal;}
+.w_zforderbox dd{height: 40px;line-height: 20px;}
+.w_fz{display: inline-block;padding: 3px 8px;line-height:18px;}
+/*支付订单(物流信息)*/
+.f_4{color: #444444;font-weight:600;}
+.w_logistics div{border-left:1px solid #ddd;padding:0 0 20px 30px; position: relative;}
+.w_logistics span.yuan{display: block;width: 12px; height: 12px; border-radius: 100%; /* background: #dddddd; */ border: 2px solid #dddddd; background: #fff;
+ position: absolute;left: -7px;top:0;}
+ .w_logistics div:nth-child(1) .yuan{ background: #7de5ca;width: 10px; height: 10px;left: -5px;border:2px solid #7de5ca;}
+/*收货地址*/
+ .w_addressbox{ position: relative;border-radius: 8px;}
+ .w_modifyaddress,.w_mricon{ position: absolute;}
+ .w_mricon{ width: 30px; right: 0;top:0;}
+ .w_modifyaddress{ right:10px;bottom:15px; z-index: 9999;}
+ .w_modifyaddress img{width: 15px;}
+ .w_mricon{display: none;}
+ .w_addressbox.active  .w_mricon{ display: block;}
+/*管理中心*/
+ .w_managelist{padding:30px 15px;}
+ .w_managelist img{width: 50px; height: 50px; margin-bottom:8px;}
+ .w_relative{ position: relative;}
+ .w_lookpost{ position: absolute;right: 0;border-radius: 15px 0 0 15px;padding: 5px 10px;display: inline-block; color: #4d908a;}
+/*个人资料*/
+ .w_profile div{height: 60px; line-height: 60px; overflow: hidden;}
+ .w_file{ position: relative;}
+ .w_file input{opacity: 0; position: absolute;top:4px;right:15px;}
+.w_file input, .w_file img{width: 40px; height: 40px;}
+
+/*客服(回复)*/
+.bg_f5{ background: #f5f5f5;}
+.w_clerttop{ background: #f5f5f5;padding: 20px 15px;}
+.w_clerttop img{width: 80px; height: 80px;}
+.w_clerttop div{width: 68%;}
+.w_pt30{padding-top:30px;}
+.w_answer img{width: 45px; height: 45px;}
+.w_answer div.pull-left{width:80%;}
+.f_normal{font-weight:normal;}
+.w_h5{ background: #e5e4e4; height: 5px;}
+/*储值卡(已终止)*/
+.w_yhxy{ position: absolute;right: 15px;top:15px;}
+.w_yhxy img{width: 16px; height: 16px;}
+/*储值卡*/
+.w_czk img{width: 80px; height: 80px;}
+.h_mt20{margin-top:20px;}
+.w_czktab{display: block;padding:0 15px;}
+.w_czktab li{margin-right:15px;}
+.w_mb2{margin-bottom:3px;}
+/*添加地址*/
+.w_addaddress input,.w_addaddress .w_h50{height: 50px;}
+.w_addaddress input,.w_addaddress input:focus,.w_addaddress textarea,.w_addaddress textarea:focus{box-shadow: none;border-radius: 8px;}
+.w_h50 textarea{resize: none;}
+.no,.yes{width:45px;margin:14px 0 0 0;}
+.w_addaddress .w_h50{height: 50px; line-height: 50px;}
+.w_ictyicon{position: absolute;right:10px;top:20px;}
+/*添加地址*/
+.header_bggreen{background:linear-gradient(to left,#69dec4,#8ce6c3);}
+.h_200{height: 200px;}
+/*储值卡(产品详情)*/
+.w_useragreement input+label,.w_useragreement input:checked+label{margin-top:15px;}
+.w_useragreement input+label,.w_useragreement input:checked+label,.w_tqfs  input+label,.w_tqfs input:checked+label{float: right!important;}
+/*储值卡(提取)*/
+.w_tqfs  input+label,.w_tqfs input:checked+label{margin-top:10px;}
+.w_f25{font-size: 25px;}
+.h_inputbox{height:50px}
+.h_inputbox input{height: 48px;width: 80%;}
+.w_line{height:6px; background: #f5f5f5;width: 100%;}
+/*我的团队*/
+.w_teamlist{ background: #a4a3a3;}
+.w_sxcontent{border:1px solid #65dcc4;width: 96%;margin: 0 2%;border-radius: 0 0 5px 5px;}
+.w_bordertop{border-top:1px dotted #65dcc4;}
+/*关于我们*/
+.w_imgbox{ position: relative;}
+.w_imgbox .w_img{width: 92%; margin:15px 4%;}
+.w_left{ position: absolute;top:0;left: 0;width:40px;}
+.w_right{ position: absolute;bottom:0;right: 0;width:40px;}
+.line{width: 40px;}
+.w_l30{line-height:28px;}
+/*支付成功*/
+.iconwidth{width: 50px; height: 50px;}
+.w_margintop{position: absolute;top:50%;margin-top:-117px;left: 0;}
+.bg_cb{ background: #cbcaca;}
+/*我的页面中的收货地址*/

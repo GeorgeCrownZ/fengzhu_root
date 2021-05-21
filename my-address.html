@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>我的-收货地址</title>
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/main.css" rel="stylesheet"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+<body class="bg_ef">
+	<header>
+		<div class="container w_header bg_green">
+			<div class="row">
+				<div class="col-xs-2 p0">
+					<a href="javascript:history.go(-1)" class="glyphicon glyphicon-menu-left f16 return block text-center"></a>
+				</div>
+				<a id="add" class="col-xs-2 p0 f_f pull-right text-center h_address">添加</a>
+			</div>
+		</div>
+	</header>
+	<section>
+	<div class="container">
+		<div class="row">
+			<!--没有地址显示的内容 开始-->
+			<div class="col-xs-12 w_noshop text-center" style="display: none;">
+				<img src="img/address0.png"/>
+				<span class="block text-center m_t15 f_9">您还没有收货地址哦~</span>
+			</div>
+			<!--没有地址显示的内容 结束-->
+			
+			<!--地址中有内容显示的 内容-->
+			 <div class="col-xs-12 m_t15">
+				 <div id="address"></div>
+			 </div>
+			<!--地址中有内容显示的内容-->
+		</div>
+	</div>
+	</section>
+	<script>
+		var uid = getCookie('uid');
+		var id = getQueryVariable("id");
+		var sec='';
+		function spgg(id) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/order/address',
+				data:{
+					uid:uid
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					//alert(JSON.stringify(data))
+						sec='';    
+						var add = data.rows;
+						for (var i=0;i<add.length;i++){
+										var dft = (add[i].isdefault==1)?'active':'';
+										  var item = '<div class="bg_white col-xs-12 b_r5 w_addressbox m_b15 p_t10 '+ dft +'">' +
+										  // var item = '<div class="bg_white col-xs-12 b_r5 w_addressbox m_b15 p_t10">' +
+										'<img src="img/address2.png" class="w_mricon"/>' +
+										  '<div class="col-xs-10 p0 href" id="'+add[i].id+'">'+
+										  '<p class="f_3 col-xs-10 p_l0 waddress">'+
+										  add[i].address+
+										  '</p>'+
+										  '<p class="f_3 col-xs-10 p_l0">'+
+										  //'<input type="text" value="'+add[i].id+'">'+
+										  '<span class="name">'+
+										  add[i].name + 
+										  '</span>'+ 
+										  ' '+ 
+										  '<span class="mobile">'+ 
+										  add[i].mobile +
+										  '</span>'+
+										  '</p>'+
+										  '</div>'+
+										 
+										  '<a   class="w_modifyaddress block">'+
+										  '<img src="img/address1.png" />'+
+										  '</a>'+
+										  '</div>';
+										  sec=sec+item;
+						}
+						$('#address').html(sec);
+						//判断购物车中有无内容的显示状态
+						var  shop = $('.w_addressbox').length;
+						if(shop == 0){
+							$('.w_noshop').show()
+						}else{
+							$('.w_noshop').hide()
+						}
+						$("#add").click(function(){
+							 window.location.href='myadd-address.html?id='+id;
+						})
+						
+					
+					//修改收货地址开始
+					$(".w_modifyaddress").click(function(){
+						var name =$(this).prev().find('.name').text();
+						var tel =$(this).prev().find('.mobile').text();
+						var waddress = $(this).prev().find('.waddress').text();
+						//var dft = (add[i].isDefault==1)?'active':'';
+						var id =$(this).prev().attr('id');
+						//alert(id)
+						$.ajax({
+							cache : true,
+							type: 'post',
+							url: prefix+'/self/editaddress',
+							data:{
+								id:id,
+								uid:uid,
+								name:name,
+								mobile:tel,
+								address:waddress,
+								isdefault:0
+							},
+							async: false,
+							success : function(data) {
+								  window.location.href='myeddit-address.html?id='+id;
+								 //alert(id)
+							},
+							error : function(data) {
+							    layer.alert(data.msg+'error');
+							},
+						});
+					})
+					//修改收货地址结束
+						
+				},
+				error : function (data) {
+					
+				}
+			})
+		};
+
+		//新建地址开始
+	
+		function checkUid() {
+			if(uid == '') {
+				layer.msg("请先登录");
+				setTimeout(function(){
+					window.location.href = "login.html";
+				}, 2000);
+			}
+		}
+		
+		// function modifyaddress(id){
+			
+		// }
+		
+		
+		$(function () {
+			checkUid();
+		  spgg(id);
+		  // modifyaddress(id)
+		});
+		
+		
+	</script>
+</body>
+</html>

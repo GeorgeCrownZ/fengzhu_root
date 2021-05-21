@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>我的</title>
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/main.css" rel="stylesheet"/>
+		<link href="css/swiper.min.css" rel="stylesheet"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+		<!-- <script src="js/common.js" type="text/javascript"></script> -->
+		<script src="js/layer/layer.min.js" type="text/javascript"></script>
+		<script src="js/api.js" type="text/javascript"></script>
+		<script src="js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+<body class="w_bgmember">
+	<section>
+	<div class="container">
+		<div class="row">
+			
+			<!--头像部分开始-->
+			<div class="col-xs-12 m_t15 m_b15">
+				<div class="h_header pull-left">
+					<img src="img/add.png" class="headerimg img-circle" id="headpic"/>
+					<!--普通会员的图标是 w_user，会员的图标是 member-->
+					<!-- <img src="img/w_user.png" class="w_user w_absolute"/>
+					<img src="img/w_user1.png" class="member w_absolute"/> -->
+				</div>
+				<span class="pull-left m_t15 m_l15 w_name f_of" id="nickname">
+					用户名
+				</span>
+				<!-- <div class="w_iconbox m_t15 m_l15 pull-left"> -->
+					<!--经理图标 jb_jl.png,主任图标jb_zr.png,总监图标jb_zj.png,总裁图标jb_zc.png,-->
+				<!-- 	<img src="img/jb_jl.png"/>
+					<img src="img/jb_zr.png" class="hide"/>
+					<img src="img/jb_zj.png" class="hide"/>
+					<img src="img/jb_zc.png" class="hide"/>
+				</div>
+				<a href="#" class="setup pull-right m_t15 text-center">设置</a> -->
+			</div>
+			<!--头像部分结束-->
+			
+			<!--我的订单开始-->
+			<div class="col-xs-12">
+				<div class="col-xs-12 bg_white b_r5 p10 w_pt0">
+					<div class="of h_45">
+						<h4 class="pull-left f15  m_t15">我的订单</h4>
+						<a href="allorder.html" class="pull-right f_70">全部订单<span class="glyphicon glyphicon-menu-right f_9"></span></a>
+					</div>
+					<ul class="col-xs-12 p0 w_memberlist bg_white b_r5 w_orderlist f12">
+						<li class="col-xs-3 p0 text-center m_b10">
+							<a href="allorder.html" class="f_70 block">
+								<img src="img/zf0.png"/>
+								<span class="block m_t5 ">待支付</span>
+							</a>
+						</li>
+						<li class="col-xs-3 p0 text-center m_b10">
+							<a href="allorder.html" class="f_70 block">
+								<img src="img/zf1.png"/>
+								<span class="block m_t5 ">待发货</span>
+							</a>
+						</li>
+						<li class="col-xs-3 p0 text-center m_b10">
+							<a href="allorder.html" class="f_70 block">
+								<img src="img/zf2.png"/>
+								<span class="block m_t5">待收货</span>
+							</a>
+						</li>
+						<li class="col-xs-3 p0 text-center m_b10">
+							<a href="allorder.html" class="f_70 block">
+								<img src="img/zf3.png"/>
+								<span class="block m_t5">已完成</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--我的订单结束-->
+			
+			<!--活动图片开始-->
+			<div class="col-xs-12 m_t15">
+				<div class="col-xs-6 p_l0 p_r5">
+					<a class="block">
+						<img  class="w_100" id="advertisement1"/>
+					</a>
+				</div>
+				<div class="col-xs-6 p_r0 p_l5">
+					<a class="block">
+						<img  class="w_100" id="advertisement2"/>
+					</a>
+				</div>
+			</div>
+			<!--活动图片结束-->
+			<!--列表开始-->
+			<div class="col-xs-12 m_t15">
+				<ul class="col-xs-12 p10 w_memberlist bg_white b_r5">
+					<li class="col-xs-3 p0 text-center m_b10">
+						<a  href="personaldata.html" id="personaldata" class="f_70 block">
+							<img src="img/m0.png"/>
+							<span class="block m_t5 f_of">会员资料</span>
+						</a>
+					</li>
+				<li class="col-xs-3 p0 text-center m_b10">
+					<a href="my-address.html" class="f_70 block">
+						<img src="img/m4.png"/>
+						<span class="block m_t5 f_of">收货地址</span>
+					</a>
+				</li>
+				<!-- <li class="col-xs-3 p0 text-center m_b10">
+					<a href="#" class="f_70 block">
+						<img src="img/m2.png"/>
+						<span class="block m_t5 f_of">银行卡</span>
+					</a>
+				</li>
+				<li class="col-xs-3 p0 text-center m_b10">
+					<a href="#" class="f_70 block">
+						<img src="img/m3.png"/>
+						<span class="block m_t5 f_of">联系客服</span>
+					</a>
+				</li>
+				<li class="col-xs-3 p0 text-center m_b10">
+					<a href="#" class="f_70 block">
+						<img src="img/m4.png"/>
+						<span class="block m_t5 f_of">储值卡</span>
+					</a>
+				</li>
+				<li class="col-xs-3 p0 text-center m_b10">
+					<a href="#" class="f_70 block">
+						<img src="img/m5.png"/>
+						<span class="block m_t5 f_of">门店</span>
+					</a>
+				</li>
+				<li class="col-xs-3 p0 text-center m_b10">
+					<a href="#" class="f_70 block">
+						<img src="img/m6.png"/>
+						<span class="block m_t5 f_of">推广</span>
+					</a>
+				</li>
+				<li class="col-xs-3 p0 text-center m_b10">
+					<a href="#" class="f_70 block">
+						<img src="img/m7.png"/>
+						<span class="block m_t5 f_of">管理中心</span>
+					</a>
+				</li>
+				<li class="col-xs-3 p0 text-center m_b10">
+					<a href="#" class="f_70 block">
+						<img src="img/m8.png"/>
+						<span class="block m_t5 f_of">支付订单</span>
+					</a>
+				</li> -->
+				</ul>
+			</div>
+			<!--列表结束-->
+			
+		</div>
+	</div>
+	</section>
+<footer class="navbar-fixed-bottom">
+	<!--底部导航开始-->
+	<ul class="p0 of  bg_white b_t w_footer text-center m_b0">
+		<li class="pull-left text-center " >
+			<a href="index.html" class="block f_3" target="_self">
+				<img src="img/f0.png" class="greyimg"/>
+				<img  src="img/f0a.png" class="activeimg"/>
+				<span class="block">首页</span>
+			</a>
+		</li>
+		<li class="pull-left text-center">
+			<a href="category.html" class="block f_3" target="_self">
+				<img src="img/f1.png" class="greyimg"/>
+				<img  src="img/f1a.png" class="activeimg"/>
+				<span class="block">分类</span>
+			</a>
+		</li>
+		<li class="pull-left text-center">
+			<a href="门店.html" class="block f_3" target="_self">
+				<img src="img/f2.png" class="greyimg"/>
+				<img  src="img/f2a.png" class="activeimg"/>
+				<span class="block">门店</span>
+			</a>
+		</li>
+		<li class="pull-left text-center">
+			<a href="shopcart.html" class="block f_3" target="_self">
+				<span class="number block text-center bg_green img-circle f_f" id="sc"></span>
+				<img src="img/f3.png" class="greyimg"/>
+				<img  src="img/f3a.png" class="activeimg"/>
+				<span class="block">购物车</span>
+			</a>
+		</li>
+		<li class="pull-left text-center active">
+			<a href="mine.html" class="block f_3" target="_self">
+				<img src="img/f4.png" class="greyimg"/>
+				<img  src="img/f4a.png" class="activeimg"/>
+				<span class="block">我的</span>
+			</a>
+		</li>
+	</ul>
+	<!--底部导航结束-->
+</footer>
+<script type="text/javascript">
+		
+		var uid = getCookie('uid');
+		var id = getQueryVariable("id");
+		
+		//判断是否登录 开始
+		// let uid = getCookie('uid');
+		function checkUid() {
+			if(uid == '') {
+				layer.msg("请先登录");
+				setTimeout(function(){
+					window.location.href = "login.html";
+				}, 2000);
+			}
+		}
+		//购物车中的数字 开始
+		function addshopcart(uid){
+				$.ajax({
+					cache : true,
+					type : "post",
+					url : prefix+'/main/addcart',
+					data : {
+						uid:uid
+						
+					},
+					async : false,
+					error : function(data) {
+						layui.alert(data.msg+'error');
+					},
+					success : function(data) {
+						// alert(JSON.stringify(data));
+						if (data.code ==-1 ){
+							$('#sc').text(0);
+						}
+						else{
+							$('#sc').text(data.data)
+						}
+						// layer.alert(data.msg);
+					}
+				});
+			}
+		//购物车中的数字 结束
+		
+		//头像和昵称的ajax 开始
+		function spddorder(uid) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/self/editinfo',
+				data : {
+					uid : uid
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					   //alert(JSON.stringify(data))
+					   var url=domain+data.headpic;
+					   $("#headpic").attr("src", url); 
+					   $("#nickname").html(data.nickname);
+				},
+				error : function (data) {
+					
+				}
+			})
+		};
+		//头像和昵称的ajax 结束
+		
+		//广告的ajax 开始
+		function advertisement(uid) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/self/adpic',
+				data : {
+					uid : uid,
+				    id : id
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					   //alert(JSON.stringify(data))
+					   var advertisement1=domain+data.minePic1;
+					   var advertisement2=domain+data.minePic2;
+					   //alert(advertisement1)
+					   $("#advertisement1").attr("src", advertisement1); 
+					   $("#advertisement2").attr("src", advertisement2); 
+				},
+				error : function (data) {
+					
+				}
+			})
+		};
+		//广告的ajax 结束
+		
+		
+		
+		$(function () {
+			 checkUid();
+		  spddorder(uid);
+		  advertisement(uid);
+		  addshopcart(uid)
+		});
+	</script>
+</body>
+</html>

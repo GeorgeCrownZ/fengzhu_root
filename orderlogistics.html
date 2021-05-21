@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>订单信息(物流信息)</title>
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/main.css" rel="stylesheet"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/layer/layer.min.js"></script>
+	</head>
+<body class="bg_ef">
+	<header>
+		<div class="container w_header bg_green">
+			<div class="row">
+				<div class="col-xs-2 p0">
+					<a href="javascript:history.go(-1)" class="glyphicon glyphicon-menu-left f16 return block text-center"></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+				<!--商品列表开始-->
+							<div class="col-xs-12 bg_white  p0 m_t15 b_r5">
+								<div class="col-xs-12 h_40 block f_70 qbsp" >
+									商品
+									<span class="pull-right" id="allproduct">共 <em class="f_green" id="allnumber"></em> 件</span>
+								</div>
+								<div class="col-xs-12 p0" id="orderdetailslist"></div>
+								<!-- <div class="col-xs-12 p_t10 p_b10 of b_b w_allorderbox ">
+									<img src="img/img3.jpg" class="pull-left"/>	
+									<div class="w_content pull-left">
+										<div class="of">
+											<h4 class="f14 pull-left m_t5 f_3 of">大红门冷鲜排骨</h4>
+											<span class="pull-right m_t5">￥18.90</span>
+										</div>
+										<div class="f12 f_9">
+											<span>单价:￥18.90/份</span>
+											<span class="m_l15">数量:1份</span>
+										</div>
+									</div>
+								</div> -->
+							</div>
+							<!--商品列表结束-->
+							
+							<!--运输信息开始-->
+							<div class="col-xs-12 bg_white b_r5 m_t15 p_t10 p_b10">
+								<h4 class="f15 f_4">运输信息</h4>
+													<div class="h_35 f_3">
+														订单编号
+														<span class="pull-right f_70" id="comments"></span>
+													</div>
+													<!-- <div class="h_35 f_3">
+														配送时间
+														<span class="pull-right f_70">2020年10月10日 15：00：00</span>
+													</div -->
+													<div class="h_35 f_3">
+														运输公司
+														<span class="pull-right f_70" id="com"></span>
+													</div>
+													<div class="h_35 f_3">
+														运单号
+														<span class="pull-right f_70" id="waybill"></span>
+													</div>
+													<div class="h_35 f_3">
+														支付方式
+														<span class="pull-right f_70" id="payComments"></span>
+													</div>
+													<div class="h_35 f_3">
+														支付金额
+														<span class="pull-right f_70" ><em id="price"></em>元</span>
+													</div>
+							</div>
+							<!--运输信息结束-->
+							
+							<!--物流信息开始-->
+							<div class="col-xs-12 bg_white b_r5 m_t15 p_t10 p_b10">
+								<h4 class="f15 f_4">物流信息</h4>
+								<div class="col-xs-12 w_logistics m_t15" id="logistics">
+									<!-- <div>
+										<span class="yuan"></span>
+										<p class="m_b5">本人已签收</p>
+										<span class="block f_9 f12">2018-12-27 12:20:08</span>
+									</div>
+									<div>
+										<span class="yuan"></span>
+										<p class="m_b5">派送中，天堂派件员，正正派件</p>
+										<span class="block f_9 f12">2018-12-26 12:20:08</span>
+									</div>
+									<div>
+										<span class="yuan"></span>
+										<p class="m_b5">到达天堂，天堂总部</p>
+										<span class="block f_9 f12">2018-12-27 15:20:08</span>
+									</div>
+									<div>
+										<span class="yuan"></span>
+										<p class="m_b5">已发货</p>
+										<span class="block f_9 f12">2018-12-25 12:20:08</span>
+									</div> -->
+									
+								</div>
+							</div>	
+							<!--物流信息结束-->					</div>		
+			</div>
+		</div>
+	</section>	
+	<script type="text/javascript">
+		var uid = getCookie('uid');
+		var id = getQueryVariable("id");
+		//alert(id)
+		var list='';
+		var wuliu='';
+		//订单详情的ajax 开始
+		function orderdetails(uid) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/express/orderAbouts',
+				data : {
+					id:id,
+					uid : uid
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					   //alert(JSON.stringify(data))
+					   //var url=domain+data.headpic;
+					   //循环商品开始
+					   var shop = data.rows;
+					   
+					   //alert(shop)
+					   for (var i=0;i<shop.length;i++){
+					   	var url=domain+shop[i].pic;
+					   				  var item = '<div class="col-xs-12 p_t10 p_b10 of b_b w_allorderbox ">' +
+					   				  '<img src="'+url+'" class="pull-left"/>' +
+					   				  '<div class="w_content pull-left">'+
+					   				  '<div class="of">'+
+					   				  '<h4 class="f14 pull-left m_t5 f_3 of">'+
+					   				    shop[i].productName +
+					   					'</h4>'+
+					   				  '<span class="pull-right m_t5">'+
+					   				  '￥' +
+					   				  shop[i].sums +
+					   				  '</span>'+
+					   				  '</div>'+
+					   				  '<div class="f12 f_9">'+
+					   				  '<span>'+
+					   				 ' 单价：￥' +
+					   				 shop[i].price+
+					   				 '/份'+
+					   				  '</span>'+
+					   				  '<span class="m_l15">'+
+					   				  ' 数量：' +
+					   				   shop[i].productQuantity +
+					   				'</span>'+
+					   				'</div>'+
+					   				'</div>'+
+					   				'</div>';
+									list=list+item;
+					   }
+					   $('#orderdetailslist').html(list);
+					   //循环商品结束
+					   
+					  $("#comments").html(data.comments);
+					  $("#price").html(data.price)
+					  $("#allnumber").html(data.total)
+					  $("#payComments").html(data.payComments)
+					  
+					  //商品的显示与隐藏
+					  var listlength = $(".w_allorderbox").length;
+					  if(listlength>1){
+					  	$('.qbsp').show()
+					  }else{
+					  	$('.qbsp').hide()
+					}
+					  
+					 $('#allproduct').click(function(){
+					  	  window.location.href='allproduct.html?&id='+id;
+					})
+					
+				},
+				error : function (data) {
+					
+				}
+			})
+		};
+		//订单详情的ajax 结束
+		//物流信息ajax 开始
+		
+		function logistics(uid) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/express/expressAbouts',
+				data : {
+					id:id, 
+					uid : uid
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					   //循环商品开始
+					    //alert(JSON.stringify(data))
+					   var wuliu  = JSON.parse(data.body);
+					   var ac = '';
+					   for (var i=0;i<wuliu.data.length;i++){
+									console.log(wuliu.data[i])
+					   				  var item = '<div>' +
+					   				  '<span class="yuan">'+
+					   				  '</span>'+
+					   				  '<p class="m_b5">'+
+									  wuliu.data[i].context+
+					   				  '</p>'+
+					   				  '<span class="block f_9 f12">'+
+					   				   wuliu.data[i].time +
+					   				'</span>'+
+					   				'</div>';
+									ac += item;
+					   }
+					   $('#logistics').html(ac);
+					  // 循环商品结束  
+					$('#waybill').html(JSON.parse(data.body).nu);
+					$('#com').html(data.express);
+					
+				},
+				error : function (data) {
+					
+				}
+			})
+		};
+		
+		//物流信息ajax 结束
+		$(function(){
+			orderdetails(uid);
+			logistics(uid)
+		})
+	</script>
+</body>
+</html>

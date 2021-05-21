@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>订单信息(商品)</title>
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/main.css" rel="stylesheet"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/layer/layer.min.js"></script>
+	</head>
+<body class="bg_ef">
+	<header>
+		<div class="container w_header bg_green">
+			<div class="row">
+				<div class="col-xs-2 p0">
+					<a href="javascript:history.go(-1)" class="glyphicon glyphicon-menu-left f16 return block text-center"></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<!--已发货开始-->
+					<div class="col-xs-12 bg_white b_r5 m_t15 p_t10 p_b10 m_t15">
+						<div class="h_35 f_3">
+							<span id="systemComments"></span>
+							<span class="pull-right f_70" id="express">跟踪物流</span>
+						</div>
+					</div>	
+					<!--已发货开始-->
+					<div class="col-xs-12 bg_white b_r5 m_t15 p_t10 p_b10 m_t15">
+						<div class=" f_3">
+							<span>收货地址</span>
+							<div class="pull-right f_70 col-xs-9 p0 text-right">
+								<span class="block m_b5" id="address"></span>
+								<span class="block">
+									<em id="name" class="m_r10"></em>
+									<em id="tel"></em>
+								</span>
+							</div>
+						</div>
+					</div>	
+				<!--商品列表开始-->
+							<div class="col-xs-12 bg_white  p0 m_t15 b_r5">
+								<div class="col-xs-12 h_40 block f_70 qbsp" >
+									商品
+									<span class="pull-right" id="allproduct">共 <em class="f_green" id="allnumber"></em> 件</span>
+								</div>
+								<div class="col-xs-12 p0" id="orderdetailslist"></div>
+								<!-- <div class="col-xs-12 p_t10 p_b10 of b_b w_allorderbox ">
+									<img src="img/img3.jpg" class="pull-left"/>	
+									<div class="w_content pull-left">
+										<div class="of">
+											<h4 class="f14 pull-left m_t5 f_3 of">大红门冷鲜排骨</h4>
+											<span class="pull-right m_t5">￥18.90</span>
+										</div>
+										<div class="f12 f_9">
+											<span>单价:￥18.90/份</span>
+											<span class="m_l15">数量:1份</span>
+										</div>
+									</div>
+								</div> -->
+							</div>
+							<!--商品列表结束-->
+							
+							<!--商品信息开始-->
+							<div class="col-xs-12 bg_white b_r5 m_t15 p_t10 p_b10">
+								<div class="h_35 f_3">
+									商品信息
+									<span class="pull-right f_70 w_fz">复制</span>
+								</div>
+													<div class="h_35 f_3">
+														订单编号
+														<span class="pull-right f_70" id="comments"></span>
+													</div>
+													<!-- <div class="h_35 f_3">
+														配送时间
+														<span class="pull-right f_70">2020年10月10日 15：00：00</span>
+													</div> -->
+													
+													<div class="h_35 f_3">
+														商品总重量
+														<span class="pull-right f_70"><em id="freight"></em>kg</span>
+													</div>
+													<div class="h_35 f_3">
+														优惠
+														<span class="pull-right f_70" id="discount"></span>
+													</div>
+													<div class="h_35 f_3">
+														运费
+														<span class="pull-right f_70" id="expressFee"></span>
+													</div>
+													<div class="h_35 f_3">
+														支付方式
+														<span class="pull-right f_70" id="payComments"></span>
+													</div>
+													<div class="h_35 f_3">
+														<span class="nopay_price">需金额</span>
+														<span class="">支付金额</span>
+														<span class="pull-right f_70" ><em id="price"></em>元</span>
+													</div>
+							</div>
+							<!--商品信息结束-->
+												</div>		
+			</div>
+		</div>
+	</section>	
+	<script type="text/javascript">
+		var uid = getCookie('uid');
+		var id = getQueryVariable("id");
+		//alert(id)
+		var list=''
+		//订单详情的ajax 开始
+		function orderdetails(uid) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/express/orderAbouts',
+				data : {
+					id:id,
+					uid : uid
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					   //alert(JSON.stringify(data))
+					   //var url=domain+data.headpic;
+					   //循环商品开始
+					   var shop = data.rows;
+					   //alert(shop.length)
+					   for (var i=0;i<shop.length;i++){
+					   	var url=domain+shop[i].pic;
+					   				  var item = '<div class="col-xs-12 p_t10 p_b10 of b_b w_allorderbox ">' +
+					   				  '<img src="'+url+'" class="pull-left"/>' +
+					   				  '<div class="w_content pull-left">'+
+					   				  '<div class="of">'+
+					   				  '<h4 class="f14 pull-left m_t5 f_3 of">'+
+					   				    shop[i].productName +
+					   					'</h4>'+
+					   				  '<span class="pull-right m_t5">'+
+					   				  '￥' +
+					   				  shop[i].sums +
+					   				  '</span>'+
+					   				  '</div>'+
+					   				  '<div class="f12 f_9">'+
+					   				  '<span>'+
+					   				 ' 单价：￥' +
+					   				 shop[i].price+
+					   				 '/份'+
+					   				  '</span>'+
+					   				  '<span class="m_l15">'+
+					   				  ' 数量：' +
+					   				   shop[i].productQuantity +
+					   				'</span>'+
+					   				'</div>'+
+					   				'</div>'+
+					   				'</div>';
+									list=list+item;
+					   }
+					   $('#orderdetailslist').html(list);
+					   //循环商品结束
+					   
+					  $("#comments").html(data.comments);
+					  $("#systemComments").html(data.systemComments)
+					  $("#price").html(data.price)
+					  $("#expressFee").html(data.expressFee)
+					  $("#freight").html(data.freight)
+					  $("#discount").html(data.discount)
+					  $("#allnumber").html(data.total)
+					  $("#payComments").html(data.payComments)
+					  
+					  $("#name").html(data.receiveName)
+					  $("#tel").html(data.receiveTelphone)
+					  $("#address").html(data.address)
+
+					  
+					
+					  
+					
+					  
+					var wuliustatic = $("#systemComments").text()
+					if(wuliustatic == '待发货') {
+						  $("#express").attr("disabled", true);
+					  	return;
+					}
+					if(wuliustatic == '未支付') {
+					   	$("#express").attr("disabled", true);
+						$("#payComments").html('无');
+					   	return;
+					}
+					else {
+					  	$("#express").removeAttr("disabled");
+						$('#express').click(function(){
+							  window.location.href='orderlogistics.html?&id='+id;
+						})	
+					  	return;
+					}
+					  
+					  
+					  
+					 $('#allproduct').click(function(){
+					  	  window.location.href='allproduct.html?&id='+id;
+					})
+						
+					
+					// $('.h_order').click(function(){
+					// 	 var id = $(this).attr("id");//订单ID
+					// 	  window.location.href='orderdetails.html?&id='+id;
+					// })      
+					  
+				},
+				error : function (data) {
+					
+				}
+			})
+		};
+		//订单详情的ajax 结束
+		$(function(){
+			orderdetails(uid)
+		})
+	</script>
+</body>
+</html>

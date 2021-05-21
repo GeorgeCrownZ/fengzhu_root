@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>个人资料</title>
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/main.css" rel="stylesheet"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/layer/layer.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg_ef">
+		<header>
+			<div class="container w_header">
+				<div class="row">
+					<div class="col-xs-2 p0">
+						<a href="javascript:history.go(-1)" class="glyphicon glyphicon-menu-left f16 return block text-center"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 p0 w_profile m_b30">
+						<div  class="f_70  bg_white col-xs-12 b_b">
+							头像
+							<span class="glyphicon glyphicon-menu-right pull-right m_t15"></span>
+							<div class="col-xs-6 pull-right text-right w_file">
+								<img src="" style="width: 40px;height: 40px;" id="headpic"/>
+								<!-- <input type="file" /> -->
+							</div>
+						</div>
+						<div  class="f_70  bg_white col-xs-12 b_b">
+							昵称
+							<span class="glyphicon glyphicon-menu-right pull-right m_t15"></span>
+							<input type="text" disabled id="nickname" class="pull-right f_3 col-xs-6 f_of text-right b_n bg_white" value="汐昵称"/>
+						</div>
+						<div  class="f_70  bg_white col-xs-12 b_b">
+							姓名
+							<span class="glyphicon glyphicon-menu-right pull-right m_t15"></span>
+							<input type="text" id="truename" class="pull-right f_3 col-xs-6 f_of text-right b_n bg_white" value="汐姓名" placeholder="请输入姓名"/>
+						</div>
+						<div  class="f_70  bg_white col-xs-12 b_b">
+							联系电话
+							<span class="glyphicon glyphicon-menu-right pull-right m_t15"></span>
+							<input type="text" id="phone" disabled="disabled" class="pull-right f_3 col-xs-6 f_of text-right b_n bg_white" value="联系电话" placeholder="请输入电话号码" onblur="msgCheck()"/>
+						</div>
+						<div  class="f_70  bg_white col-xs-12 b_b">
+							推荐人
+							<span class="glyphicon glyphicon-menu-right pull-right m_t15"></span>
+							<input type="number" id="pid" class="pull-right f_3 col-xs-6 f_of text-right b_n bg_white" placeholder="请输入推荐人"/>
+						</div>
+					
+				</div>
+				<button type="button" class="btn bg_green col-xs-10 col-xs-offset-1 h_40 p0 f_f conserve">保 存</button>
+			</div>
+		</div>
+		</section>
+		<style>
+		       .w_profile  input::-webkit-input-placeholder{
+		            color:#333;
+		        }
+		      .w_profile  input::-moz-placeholder{ 
+		            color:#333;
+		        }
+		     .w_profile   input:-moz-placeholder{ 
+		            color:#333;
+		        }
+		     .w_profile   input:-ms-input-placeholder{
+		            color:#333;
+		        }
+		</style>
+		<script type="text/javascript">
+			// let myreg=/^[1][3,4,5,6,7,8][0-9]{9}$/;
+			// function msgCheck() {
+			// 	let phone = $("#tel").val();
+			// 	if(phone == '') {
+			// 		return;
+			// 	}
+			// 	if(!myreg.test(phone)) {
+			// 		alert("请输入合法的手机号码");
+			// 		return;
+			// 	}
+			// }
+			
+			var uid = getCookie('uid');
+			var id = getQueryVariable("id");
+			//获取接口个人资料的信息开始
+			function spddorder(uid) {
+				$.ajax({
+					type: 'post',
+					url: prefix + '/self/editinfo',
+					data : {
+					    id : id,
+						uid:uid
+					},
+					async: false,
+					jsonp: 'jsoncallback',
+					success: function (data) {
+						// alert(JSON.stringify(data))
+						var url=domain+data.headpic;
+						//alert(url)
+						 $("#headpic").attr("src", url); 
+						 $('#nickname').val(data.nickname);
+						 $('#truename').val(data.truename);
+						 $('#phone').val(data.phone);
+						 $('#pid').val(data.pid);
+						 var pid = $('#pid').val();
+						 if(pid == false) {
+						 	$("#pid").removeAttr("disabled");
+						 	return;
+						 } else {
+						 	$("#pid").attr("disabled", true);
+						 	return;
+						 }
+					},
+					error : function (data) {
+					}
+				})
+			};
+			
+			//获取接口个人资料的信息结束
+			
+			//点击保存向后台提交数据 开始
+			$('.conserve').click(function(){
+				//var  headpic= $("#headpic").attr("src");
+				//var nickname = $('#nickname').val();
+				var truename = $('#truename').val();
+				//var phone = $('#phone').val();
+				var pid = $('#pid').val();
+				$.ajax({
+				    cache : true,
+				    type : "post",
+				    url : prefix+'/self/saveinfo',
+				    data : {
+						uid:uid,
+						//headpic:headpic,
+						//nickname:nickname,
+						truename:truename,
+						//phone:phone,
+						pid:pid
+				    },
+				    async : false,
+				    error : function(data) {
+				        layer.msg(data.msg+'error');
+						//alert(666)
+				    },
+				    success : function(data) {
+						 //alert(JSON.stringify(data))
+				        // window.location.href='mine.html';
+						 layer.msg(data.msg);
+						 setTimeout(function(){
+						 	 window.location.href='mine.html?id='+id;
+						 }, 1000);
+						
+				    }
+				});
+			})
+			//点击保存向后台提交数据 结束
+			$(function () {
+			  spddorder(uid);
+			});
+		</script>
+	</body>
+</html>

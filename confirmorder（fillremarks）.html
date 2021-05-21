@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>确认订单（填写备注）</title>
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/main.css" rel="stylesheet"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+<body class="bg_white">
+	<header>
+		<div class="container w_header bg_green">
+			<div class="row">
+				<div class="col-xs-2 p0">
+					<a href="javascript:history.go(-1)" class="glyphicon glyphicon-menu-left f16 return block text-center"></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section>
+	<div class="container">
+		<div class="row">
+		<form class="col-xs-12 m_t15 m_b15">
+			<textarea id="cont" placeholder="在这里填写您的备注信息" value="5666" class="form-control b_n remarks" rows="8" style="box-shadow:none;resize: none;"></textarea>
+			<div class="col-xs-12 w_bzcontent m_t15" id="comments">
+				<span class="b_box">请不要敲门，到了后打电话</span>
+				<span class="b_box">如果没人就放门口</span>
+			</div>
+			<div class="col-xs-12 navbar-fixed-bottom h_tj">
+				<button type="button" class="btn btn-block bg_green f_f h_40 p0 tj">提交</button>
+			</div>
+		</form>
+		</div>
+	</div>
+	</section>
+	<script type="text/javascript">
+		var id = getQueryVariable("id");
+		var uid = getCookie('uid');
+		var sec='';
+		function spddorder(id) {
+			// alert(uid)
+			$.ajax({
+				type: 'post',
+				url: prefix + '/order/remark',
+				data : {
+					uid: uid,
+				    id : id
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					// alert(JSON.stringify(data.remark));
+					$('#cont').val(data.remark);
+				},
+				error : function (data) {
+					
+				}
+			})
+		};
+		
+		$('.tj').click(function(){
+			var val = $('#cont').val();
+			// alert(val);
+			$.ajax({
+			    cache : true,
+			    type : "post",
+			    url : prefix+'/order/saveremark',
+			    data : {
+			    	uid:uid,
+			        id:id,
+					remark:val
+			    },
+			    async : false,
+			    error : function(data) {
+			        layui.alert(data.msg+'error');
+			    },
+			    success : function(data) {
+			    	// alert(JSON.stringify(data))
+			        window.location.href='confirmorder.html?id='+id;
+			    }
+			});
+		})
+
+		function getComments() {
+			$.ajax({
+				cache : true,
+				type : "get",
+				url : prefix+'/order/comments',
+				data : {},
+				async : false,
+				error : function(data) {
+					layui.alert(data.msg+'error');
+				},
+				success : function(data) {
+					let comments = '';
+					for (let i = 0; i < data.total; i++) {
+						comments += "<span class=\"b_box\">"+ data.rows[i].comments +"</span>";
+					}
+					$("#comments").html(comments);
+				}
+			});
+		}
+
+		function onck() {
+			$('.b_box').click(function(){
+				$('#cont').val($(this).text())
+			})
+		}
+
+		
+		$(function () {
+		  	spddorder(id);
+			getComments();
+			onck();
+		});
+	</script>
+</body>
+</html>

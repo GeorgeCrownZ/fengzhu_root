@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>确认订单</title>
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/main.css" rel="stylesheet"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/layer/layer.min.js"></script>
+	</head>
+<body class="bg_ef">
+	<header>
+		<div class="container w_header bg_green">
+			<div class="row">
+				<div class="col-xs-2 p0">
+					<a href="javascript:history.go(-1)" class="glyphicon glyphicon-menu-left f16 return block text-center"></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section>
+	<div class="container">
+		<div class="row">
+			<!--地址开始-->
+				<a class="col-xs-12 bg_white  w_noaddress block f_70 m_t10" id="addressbox">
+					<!--没有地址开始-->
+					<div class="col-xs-11 h_40 p0 noaddress" style="display: none;">
+						请添加地址
+					</div>
+					<!--没有地址结束-->
+					<!--有地址开始-->
+					<div class="col-xs-11  p_l0 p_r0 p_t10 f_70 yesaddress">
+						<p class="p_t0 m_b5"><strong id="address"></strong></p>
+						<p class="p_t0 "><span id="name"></span> <span id="tel"></span></p>
+					</div>
+					<!--有地址结束-->
+					<img src="img/right.png"/>
+				</a>
+			<!--地址结束-->
+			<!--商品列表开始-->
+			<div class="col-xs-12 bg_white  p0 m_t15">
+				<!--当有多个商品时显示，只有一个商品时不显示 开始-->
+				<a class="col-xs-12 h_40 block f_70 qbsp" style="display: none;" id="allproduct">
+					商品
+					<span class="glyphicon glyphicon-menu-right pull-right f_70 w_mt12"></span>
+					<span class="pull-right">共<em class="f_green" id="productnumber"></em>件</span>
+				</a>
+				<!--当有多个商品时显示，只有一个商品时不显示 结束-->
+				<div id="spddorder"></div>
+			</div>
+			
+			<!--商品列表结束-->
+			
+			<!--支付方式开始-->
+			<div class="col-xs-12 bg_white w_zffsbox m_t15">
+				<h4 class="f15 m_t15 m_b15">支付方式</h4>
+				<label class="col-xs-12 of w_common p0 block m_b15">
+					<img src="img/zffs0.png" class="pull-left"/>
+					<span class="pull-left col-xs-6 ">微信支付</span>
+					<input type="radio" id="wechat" name="zffs" checked="checked" disabled="disabled"/>
+					<label></label>
+				</label>
+				<!-- <label class="col-xs-12 of w_common p0 block m_b15">
+					<img src="img/zffs1.png" class="pull-left"/>
+					<span class="pull-left col-xs-6 ">支付宝</span>
+					<input type="radio"  name="zffs"/>
+					<label></label>
+				</label>
+				<label class="col-xs-12 of w_common p0 block m_b15">
+					<img src="img/zffs2.png" class="pull-left"/>
+					<span class="pull-left col-xs-6 ">银联快捷支付</span>
+					<input type="radio" name="zffs"/>
+					<label></label>
+				</label>
+				<label class="col-xs-12 of w_common p0 block m_b15">
+					<img src="img/zffs3.png" class="pull-left"/>
+					<span class="pull-left col-xs-6 ">储值卡</span>
+					<input type="radio" name="zffs"/>
+					<label></label>
+				</label>
+				<label class="col-xs-12 of w_common p0 block m_b15">
+					<img src="img/zffs4.png" class="pull-left"/>
+					<span class="pull-left col-xs-6 ">购物积分</span>
+					<input type="radio" name="zffs"/>
+					<label></label>
+				</label> -->
+			</div>
+			<!--支付方式结束-->
+			
+			<!--备注信息开始-->
+			<a   class="col-xs-12 bg_white h_40 m_t15 f_70 of" id="bz">
+				备注
+				<span class="glyphicon glyphicon-menu-right pull-right f14 f_70 w_mt12"></span>
+				<span class="col-xs-5 f_of pull-right" id="remarkscontent"></span>
+			</a>
+			<!--备注信息结束-->
+			
+			<!--商品信息开始-->
+			<div class="col-xs-12 bg_white p_t10 m_t15">
+				<div class="m_b10">
+					商品金额
+					<span class="pull-right">￥<em class="spje"></em></span>
+				</div>
+				<div class="m_b10">
+					配送费
+					<span class="pull-right">￥<em class="psf">2</em></span>
+				</div>
+			</div>
+			<!--商品信息结束-->
+			
+			<!--提交订单开始-->
+			<div class="col-xs-12 of h_45 navbar-fixed-bottom bg_white b_t">
+				实付：￥<strong id="total"></strong>
+				<button type="button" class="btn bg_green f_f pull-right m_t5 b_r30 h_tjdd">提交订单</button>
+			</div>
+			<!--提交订单结束-->
+		</div>
+	</div>
+	</section>
+	<!-- <script type="text/html" id="zfpassword">
+		<div class="col-xs-12 bg_white p_t10 p_b10 " style="position: fixed;left:0;bottom:0;">
+			<div class="col-xs-12 p0">
+				<div class="col-xs-8 p0">
+					<span class="block f16 f_3">请输入支付密码</span>
+					<span class="block f_9">请填写正确的支付密码</span>
+				</div>
+				<button type="reset" class="btn bg_green pull-right f_f" onclick="layer.closeAll()">取消</button>
+			</div>
+			<div class="password-div m_t15 col-xs-12 p0  m_t30 m_b30 b_r8">
+					<label for="password" class="password-lable">
+						<ul class="p0">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+						<input id="password" type="password" name="password" maxlength="6">
+					</label>
+			</div>
+			<button type="button" class="btn btn-block bg_green f_f m_b15">提交</button>	
+		</div>
+		
+	</script> -->
+	<!-- <script>
+		$('.h_tjdd').click(function(){
+		        var html = $('#zfpassword').html();
+		        layer.open({
+		            type: 1,
+					title:false,
+		            content: html,
+					closeBtn: 0,
+					boolean:true,
+		            //style: 'width:100%;height:520px; background-color:#fff;position:fixed; bottom:0; left:0;',
+					success: function(elem){
+					  $(".password-div input").on("input",function(e){
+					  	var number = 6;  
+					  	var pw = $("input[name = 'password']").val(); 
+					  	var list = $(".password-div ul li");  
+					  	for(var i = 0; i < number ; i++){
+					  		if(pw[i]){
+					  			$(list[i]).text("·");
+					  		}else{
+					  			$(list[i]).text("");
+					  		};
+					  	};
+					  });
+					  $(".password-div ul").click(function(){      
+					  	$("input[name = 'password']").val("");
+					  	$("#password").focus();
+					  	$(".password-div ul li").text("");
+					  });
+					}
+		        });
+		});
+	</script> -->
+	<script type="text/javascript">
+		var uid = getCookie('uid');
+		var id = getQueryVariable("id");
+		var sec='';
+		// alert('uid:'+uid)
+		function spddorder(id) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/order/confirm',
+				data : {
+				    'id' : id,
+					uid:uid
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					    // alert(JSON.stringify(data))
+						sec='';
+						var shop = data.rows;
+						for (var i=0;i<shop.length;i++){
+							var url=domain+shop[i].pic;
+										  var item = '<div class="col-xs-12 p_t10 p_b10 of b_b w_allorderbox ">' +
+										  '<img src="'+url+'" class="pull-left"/>' +
+										  '<div class="w_content pull-left">'+
+										  '<div class="of">'+
+										  '<h4 class="f14 pull-left m_t5 f_3 of">'+
+										    shop[i].productName +
+											'</h4>'+
+										  '<span class="pull-right m_t5">'+
+										  '￥' +
+										  shop[i].sums +
+										  '</span>'+
+										  '</div>'+
+										  '<div class="f12 f_9">'+
+										  '<span>'+
+										 ' 单价：￥' +
+										 shop[i].price+
+										 '/份'+
+										  '</span>'+
+										  '<span class="m_l15">'+
+										  ' 数量：' +
+										   shop[i].productQuantity +
+										'</span>'+
+										'</div>'+
+										'</div>'+
+										'</div>';
+										  sec=sec+item;
+						}
+						$('#spddorder').html(sec);
+						$("#productnumber").html(data.total);
+						$('.spje').html(data.price);
+						$('.psf').html(data.expressFee);
+						$('#remarkscontent').html(data.comments);
+						$('#address').html(data.address);
+						$('#name').html(data.receiveName);
+						$('#tel').html(data.receiveTelphone);
+						
+						//收货地址有无的判断
+						var  noadd = $('#address').html();
+						if(noadd == null || noadd == "" || noadd == undefined){
+							$(".noaddress").show()
+							$(".yesaddress").hide()
+						}else{
+							$(".noaddress").hide()
+							$(".yesaddress").show()
+						}
+
+						//商品的显示与隐藏
+						var listlength = $(".w_allorderbox").length;
+						if(listlength>1){
+							$('.qbsp').show()
+						}else{
+							$('.qbsp').hide()
+						}
+						
+						//总价
+						var spje =   parseFloat($('.spje').text());
+						var psf = parseFloat($('.psf').text());
+						var total = spje + psf;
+						$('#total').html(total)
+						
+						
+						
+						$("#allproduct").click(function(){
+							window.location.href='allproduct.html?id='+id;
+						})
+						$("#addressbox").click(function(){
+							var  noadd = $('#address').html();
+							if(noadd == null || noadd == "" || noadd == undefined){
+								$(".noaddress").show()
+								$(".yesaddress").hide()
+							}else{
+								$(".noaddress").hide()
+								$(".yesaddress").show()
+							}
+							window.location.href='address.html?id='+id;
+						})
+						$("#bz").click(function(){
+							window.location.href='confirmorder（fillremarks）.html?id='+id;
+						})
+				},
+				
+				error : function (data) {
+					
+				}
+			})
+		};
+		//提交订单开始
+		$(".h_tjdd").click(function(){
+			let redirecturl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+ appid +"&redirect_uri="+ domain +"/ordercheck.html&response_type=code&scope=snsapi_userinfo&state="+ id +"#wechat_redirect";
+			var leng=$(".yesaddress").text();
+			if(leng==false){
+				layer.msg("请选择收货地址");
+			}else{
+				window.location.href = redirecturl;
+			}
+		})
+		function checkUid() {
+			if(uid == '') {
+				layer.msg("请先登录");
+				setTimeout(function(){
+					window.location.href = "login.html";
+				}, 2000);
+			}
+		}
+
+		//提交订单结束
+		$(function () {
+			/*checkUid();*/
+		  spddorder(id);
+		});
+	</script>
+</body>
+</html>

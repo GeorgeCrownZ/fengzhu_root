@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>添加地址</title>
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/main.css" rel="stylesheet"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+		<script src="js/api.js" type="text/javascript"></script>
+		<script src="js/layer/layer.min.js"></script>
+	</head>
+<body class="bg_white">
+	<header>
+		<div class="container w_header w_bgimg1">
+			<div class="row">
+				<div class="col-xs-2 p0">
+					<a href="javascript:history.go(-1)" class="glyphicon glyphicon-menu-left f16 return block text-center"></a>
+				</div>
+				<!-- <div class="col-xs-2 p0 f_3 pull-right text-center">删除</div> -->
+			</div>
+		</div>
+	</header>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+								<form class="col-xs-12 w_addaddress m_t15">
+									<div class="form-group bg_f5 b_r5 m_b15">
+										<input type="text" placeholder="收货人" id="name" class="form-control bg_f5 b_n"/>
+									</div>
+									<div class="form-group bg_f5 b_r5 m_b15">
+										<input type="text" placeholder="联系电话" id="tel" class="form-control bg_f5 b_n" onblur="msgCheck()"/>
+									</div>
+									<!-- <div class="form-group bg_f5 b_r5 m_b15 w_relative">
+										<input type="text"  id="picker" placeholder="省/市/自治区" class="form-control bg_f5 b_n"/>
+										<span class="glyphicon glyphicon-menu-right f_9 w_ictyicon"></span>
+									</div>
+									<div class="form-group bg_f5 b_r5 m_b15">
+										<input type="text" id="square" placeholder="街区" class="form-control bg_f5 b_n"/>
+									</div> -->
+									<div class="form-group bg_f5 b_r5 m_b15">
+										<textarea class="form-control bg_f5 b_n" id="detailedaddress" placeholder="详细地址" rows="6"></textarea>
+									</div>
+									<div class="form-group bg_f5 b_r5 m_b15 w_h50 of col-xs-12">
+										<span class="f_70">是否设置默认地址</span>
+										<img src="img/no.png" class="no pull-right" id="no"/>
+										<img src="img/yes.png" class="yes pull-right" id="yes" style="display:none;"/>
+									</div>
+									<div class="form-group  b_r5 m_b15 w_h50 m_t30 of col-xs-12 p0">
+										<button type="button" class="btn btn-block bg_green f_f h_40 p0 add-tj" >提交</button>
+									</div>
+								</form>
+					</div>		
+			</div>
+		</div>
+	</section>	
+	<script type="text/javascript">
+		let myreg=/^[1][3,4,5,6,7,8][0-9]{9}$/;
+		
+		function msgCheck() {
+			let phone = $("#tel").val();
+			if(phone == '') {
+				return;
+			}
+			if(!myreg.test(phone)) {
+				alert("请输入合法的手机号码");
+				return;
+			}
+		}
+		
+		var uid = getCookie('uid');
+		var id = getQueryVariable("id");
+		//添加地址里的js
+		var no = 0;
+		$('#no').click(function(){
+			no=1;
+			$(this).hide();
+			$(this).next().show();
+		})
+		$('#yes').click(function(){
+			no=0;
+			$(this).hide();
+			$(this).prev().show();
+		})
+		
+		//新建地址开始
+		$(".add-tj").click(function(){
+			var name = $('#name').val();
+			var tel = $('#tel').val();
+			var detailedaddress = $('#detailedaddress').val();
+			$.ajax({
+				cache : true,
+				type: 'post',
+				url: prefix+'/order/saveaddr',
+				data:{
+					id:id,
+					uid:uid,
+					name:name,
+					mobile:tel,
+					address:detailedaddress,
+					isdefault:no
+				},
+				async: false,
+				success : function(data) {
+					if(name==false&&tel==true&&detailedaddress==true){
+						layer.msg('请填写姓名');
+						return;
+					}
+					if(tel==false&&name==truedetailedaddress==true){
+						layer.msg('请填写手机号');
+						return;
+					}
+					if(detailedaddress==false&&name==true&&tel==true){
+						layer.msg('请填写地址');
+						return;
+					}
+					else{
+						window.location.href='address.html?id='+id;
+					}
+					
+				},
+				error : function(data) {
+				    layer.alert(data.msg+'error');
+				},
+			});
+		})
+
+		function checkUid() {
+			if(uid == '') {
+				layer.msg("请先登录");
+				setTimeout(function(){
+					window.location.href = "login.html";
+				}, 2000);
+			}
+		}
+		
+		// var addresslist=[];
+		// function readlist(id) {
+		// 	$.ajax({
+		// 		type: 'post',
+		// 		url: prefix + '/order/address',
+		// 		data:{
+		// 			id:id,
+		// 			uid:uid
+		// 		},
+		// 		async: false,
+		// 		jsonp: 'jsoncallback',
+		// 		success: function (data) {
+		// 			 //alert(JSON.stringify(data))
+		// 			addresslist=data.rows;
+		// 			 // alert(JSON.stringify(addresslist[0]))
+		// 			 // alert(id)
+		// 			for(var i=0;i<addresslist.length;i++){
+		// 				if(addresslist[i].id==id){
+		// 					 //alert(JSON.stringify(addresslist[i]))
+		// 					$('#name').val(addresslist[i].name);
+		// 					$('#tel').val(addresslist[i].mobile);
+		// 					$('#detailedaddress').val(addresslist[i].address);
+		// 				}else{
+							
+		// 				}
+		// 			}
+						
+		// 		},
+		// 		error : function (data) {
+					
+		// 		}
+		// 	})
+		// };
+
+		$(function () {
+			checkUid();
+			// readlist(id);
+		})
+	</script>
+</body>
+</html>

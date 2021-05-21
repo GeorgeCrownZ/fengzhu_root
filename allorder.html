@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>我的订单</title>
+		<link href="css/bootstrap.css" rel="stylesheet"/>
+		<link href="css/common.css" rel="stylesheet"/>
+		<link href="css/main.css" rel="stylesheet"/>
+		<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/api.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.s_allshop .w_allorderbox{display:none;}
+			.s_allshop .w_allorderbox:nth-child(1){display: block;}
+			.s_allshop .w_allorderbox:nth-child(2){display: block;}
+			.s_allshop .w_allorderbox:nth-child(3){display: block;}
+			.qbsp{display: block;}
+		</style>
+	</head>
+<body class="bg_ef">
+	<header>
+		<div class="container w_header bg_green">
+			<div class="row">
+				<div class="col-xs-2 p0">
+					<a href="javascript:history.go(-1)" class="glyphicon glyphicon-menu-left f16 return block text-center"></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section>
+	<div class="container">
+		<div class="row">
+			<!--没有订单显示的内容开始-->
+			<div class="col-xs-12 w_noshop text-center" style="display: none;">
+				<img src="img/allorder0.png"/>
+				<span class="block text-center m_t15 f_9">您还没有任何订单哦~</span>
+			</div>
+			<!--没有订单显示的内容结束-->
+			
+			<!--订单中有内容显示的内容-->
+			  <!-- 菜单 -->
+			  <ul class="nav nav-tabs w_tabs h_40 text-center bg_white" role="tablist">
+			    <li role="presentation" class="active"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">全部</a></li>
+			    <li role="presentation" ><a href="#nopay" aria-controls="nopay" role="tab" data-toggle="tab">待支付</a></li>
+				<li role="presentation"><a href="#nosend" aria-controls="nosend" role="tab" data-toggle="tab">待发货</a></li>
+			    <li role="presentation" ><a href="#norec" aria-controls="norec" role="tab" data-toggle="tab">待收货</a></li>
+				<li role="presentation"><a href="#finish" aria-controls="finish" role="tab" data-toggle="tab">已完成</a></li>
+			  </ul>
+			
+			  <!-- Tab panes -->
+			  <div class="tab-content col-xs-12 m_t15">
+				  
+				<!--全部订单开始-->
+			    <div role="tabpanel" class="tab-pane col-xs-12 p0 active" id="all">
+					
+					<!-- <div class="col-xs-12 bg_white b_r5 m_b15">
+						<div class="col-xs-12 b_b of h_35 p0">
+							<span class="f_9">2020-10.20  14:19:16</span>
+							<span class="pull-right">待收货</span>
+						</div>
+						<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">
+							<img src="img/img2.jpg" class="pull-left"/>	
+							<div class="w_content pull-left">
+								<div class="of">
+									<h4 class="f14 pull-left m_t5 f_3 of">大红门冷鲜排骨</h4>
+									<span class="pull-right m_t5">￥18.90</span>
+								</div>
+								<div class="f12 f_9">
+									<span>单价:￥18.90/份</span>
+									<span class="m_l15">数量:1份</span>
+								</div>
+							</div>
+						</div>
+						<div class="text-right h_40 col-xs-12">
+							共<span class="f_green m_l5 m_r5">1</span>件 
+							<span class="m_l10">实付：￥18.90</span>
+						</div>
+					</div>
+					 -->
+					<!-- <div class="col-xs-12 bg_white b_r5 m_b15 h_order">
+						<img src="img/qs.png" class="qs"/>
+						<div class="col-xs-12 b_b of h_35 p0">
+							<span class="f_9">2020-10.20  14:19:16</span>
+						</div>
+						<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">
+							<img src="img/img3.jpg" class="pull-left"/>	
+							<div class="w_content pull-left">
+								<div class="of">
+									<h4 class="f14 pull-left m_t5 f_3 of">大红门冷鲜排骨</h4>
+									<span class="pull-right m_t5">￥18.90</span>
+								</div>
+								<div class="f12 f_9">
+									<span>单价:￥18.90/份</span>
+									<span class="m_l15">数量:1份</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">
+							<img src="img/img2.jpg" class="pull-left"/>	
+							<div class="w_content pull-left">
+								<div class="of">
+									<h4 class="f14 pull-left m_t5 f_3 of">大红门冷鲜排骨</h4>
+									<span class="pull-right m_t5">￥18.90</span>
+								</div>
+								<div class="f12 f_9">
+									<span>单价:￥18.90/份</span>
+									<span class="m_l15">数量:1份</span>
+								</div>
+							</div>
+						</div>
+						<div class="text-right h_40 col-xs-12">
+							共<span class="f_green m_l5 m_r5">1</span>件 
+							<span class="m_l10">实付：￥18.90</span>
+						</div>
+					</div> -->
+					
+				</div>
+				<!--全部订单结束-->
+				
+				<!--待支付开始-->
+				<div role="tabpanel" class="tab-pane col-xs-12 p0" id="nopay">
+					
+					<!-- <div class="col-xs-12 bg_white b_r5 m_b15">
+						<div class="col-xs-12 b_b of h_35 p0">
+							<span class="f_9">data.rows[i].orderTime</span>
+							<span class="pull-right">data.rows[i].state</span>
+						</div>
+						<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox" >
+							<img src="img/img2.jpg" class="pull-left"/>	
+							<div class="w_content pull-left">
+								<div class="of">
+									<h4 class="f14 pull-left m_t5 f_3 of">大红门冷鲜排骨</h4>
+									<span class="pull-right m_t5">￥18.90</span>
+								</div>
+								<div class="f12 f_9">
+									<span>单价:￥18.90/份</span>
+									<span class="m_l15">数量:1份</span>
+								</div>
+							</div>
+						</div>
+						<div class="text-right h_40 col-xs-12">
+							共<span class="f_green m_l5 m_r5">1</span>件 
+							<span class="m_l10">实付：￥18.90</span>
+						</div>
+					</div> -->
+					
+				</div>
+				<!--待支付结束-->
+				<!--待发货开始-->
+				<div role="tabpanel" class="tab-pane col-xs-12 p0" id="nosend">
+					
+					<!-- <div class="col-xs-12 bg_white b_r5 m_b15">
+						<div class="col-xs-12 b_b of h_35 p0">
+							<span class="f_9">2020-10.20  14:19:16</span>
+							<span class="pull-right">待评价</span>
+						</div>
+						<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">
+							<img src="img/img2.jpg" class="pull-left"/>	
+							<div class="w_content pull-left">
+								<div class="of">
+									<h4 class="f14 pull-left m_t5 f_3 of">大红门冷鲜排骨</h4>
+									<span class="pull-right m_t5">￥18.90</span>
+								</div>
+								<div class="f12 f_9">
+									<span>单价:￥18.90/份</span>
+									<span class="m_l15">数量:1份</span>
+								</div>
+							</div>
+						</div>
+						<div class="text-right h_40 col-xs-12">
+							共<span class="f_green m_l5 m_r5">1</span>件 
+							<span class="m_l10">实付：￥18.90</span>
+						</div>
+					</div> -->
+					
+				</div>
+				<!--待发货结束-->
+				
+				
+				
+				<!--待收货开始-->
+			    <div role="tabpanel" class="tab-pane col-xs-12 p0 " id="norec">
+					
+					<!-- <div class="col-xs-12 bg_white b_r5 m_b15">
+						<div class="col-xs-12 b_b of h_35 p0">
+							<span class="f_9">2020-10.20  14:19:16</span>
+							<span class="pull-right">待收获</span>
+						</div>
+						<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">
+							<img src="img/img2.jpg" class="pull-left"/>	
+							<div class="w_content pull-left">
+								<div class="of">
+									<h4 class="f14 pull-left m_t5 f_3 of">大红门冷鲜排骨</h4>
+									<span class="pull-right m_t5">￥18.90</span>
+								</div>
+								<div class="f12 f_9">
+									<span>单价:￥18.90/份</span>
+									<span class="m_l15">数量:1份</span>
+								</div>
+							</div>
+						</div>
+						<div class="text-right h_40 col-xs-12">
+							共<span class="f_green m_l5 m_r5">1</span>件 
+							<span class="m_l10">实付：￥18.90</span>
+						</div>
+					</div> -->
+					
+				</div>
+				<!--待收货结束-->
+				
+				<!--已完成开始-->
+				<div role="tabpanel" class="tab-pane" id="finish">
+					
+					<!-- <div class="col-xs-12 bg_white b_r5 m_b15">
+						<div class="col-xs-12 b_b of h_35 p0">
+							<span class="f_9">2020-10.20  14:19:16</span>
+						</div>
+						<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">
+							<img src="img/img2.jpg" class="pull-left"/>	
+							<div class="w_content pull-left">
+								<div class="of">
+									<h4 class="f14 pull-left m_t5 f_3 of">大红门冷鲜排骨</h4>
+									<span class="pull-right m_t5">￥18.90</span>
+								</div>
+								<div class="f12 f_9">
+									<span>单价:￥18.90/份</span>
+									<span class="m_l15">数量:1份</span>
+								</div>
+							</div>
+						</div>
+						<div class="text-right h_40 col-xs-12">
+							共<span class="f_green m_l5 m_r5">1</span>件 
+							<span class="m_l10">实付：￥18.90</span>
+						</div>
+					</div> -->
+					
+				</div>
+				<!--已完成结束-->
+				
+			  </div>
+			<!--订单中有内容显示的内容-->
+		</div>
+	</div>
+	</section>
+	<script type="text/javascript">
+		var uid = getCookie('uid');
+		var id = getQueryVariable("id");
+		
+		//全部 开始
+				function all(id) {
+					$.ajax({
+						type: 'post',
+						url: prefix + '/self/order',
+						data : {
+							uid:uid,
+							type:'all'
+						},
+						async: false,
+						jsonp: 'jsoncallback',
+						success: function (data) {
+							   var allbox = data.rows;
+								 var item='';
+							   for (var i=0;i<allbox.length;i++){
+							   				var url=domain+allbox[i].pic;
+											var imgicon = (allbox[i].state=='已完成')?'active':'hide';
+											var statefont = (allbox[i].state=='已完成')?'hide':'active';
+						                   item += '<div class="col-xs-12 bg_white b_r5 m_b15 h_order"  id="'+allbox[i].id+'">' +
+							                   '<img src="img/qs.png" class="qs '+ imgicon +'"/>'+
+												 '<div class="col-xs-12 b_b of h_35 p0">'+
+													'<span class="f_9">'+
+													allbox[i].orderTime +
+													'</span>'+
+													'<span class="pull-right '+ statefont +'">'+
+													allbox[i].state+
+													'</span>'+
+												 '</div>'+
+												 '<div class="col-xs-12 p0 h_40 block f_70 qbsp " >'+
+												 	'商品'+
+												 	'<span class="pull-right allproduct">'+
+													'共'+ 
+													'<em class="f_green m_l5 m_r5">'+
+													 allbox[i].detail.length +
+													'</em>'+
+													'件'+
+													'<em class="glyphicon glyphicon-menu-right">'+
+													'</em>'+
+													'</span>'+
+												 '</div>'+
+												 '<div class="s_allshop of col-xs-12 p0">';
+												var det = allbox[i].detail;
+												for(var j=0;j<det.length;j++){
+													 //alert(j+1)
+													   var url=domain+det[j].pic;
+													   //计算每个商品的总价开始
+														var totalprice='';
+														var  price =det[j].price;
+														var  productQuantity=det[j].productQuantity;
+														totalprice=price*productQuantity
+													    //计算每个商品的总价结束
+														
+													item+='<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox" >'+
+														'<img src="'+url+'" class="pull-left"/>'+
+														'<div class="w_content pull-left">'+
+															'<div class="of">'+
+																'<h4 class="f14 pull-left m_t5 f_3 of">'+
+																det[j].productName +
+																'</h4>'+
+																'<span class="pull-right m_t5">'+'￥'+totalprice+'</span>'+
+															'</div>'+
+															'<div class="f12 f_9 of">'+
+																'<span>'+'单价：￥'+
+																det[j].price+
+																'/份'+
+																'</span>'+
+																'<span class="m_l15">'+
+																'数量：'+
+																'<em class="productQuantity">'+
+																det[j].productQuantity +
+																'</em>'+
+																'份'+
+																'</span>'+
+															'</div>'+
+														'</div>'+
+													' </div>';
+												}
+												var waitfont = (allbox[i].state=='待支付')?'active':'hide';
+												var payfinish =(allbox[i].state=='待支付')?'hide':'active';
+
+
+												
+												 item+='</div>'+
+												 '<div class="text-right h_40 col-xs-12 p_r0">'+
+													'共'+'<span class="f_green m_l5 m_r5" id="productQuantity">'+
+													det.length+
+													'</span>'+
+													'件' +
+													'<span class="m_l10">'+
+													'<em class="'+ waitfont +'">'+
+													'需'+
+													'实付：￥'+
+													allbox[i].payable +
+													'</span>'+
+													'</em>'+
+													'<em class="'+ payfinish +'">'+
+													'实付：￥'+
+													allbox[i].price +
+													'</span>'+
+													'</em>'+
+													'</span>'+
+													'<button class="zf m_l10 bg_white b_box b_r5 '+ waitfont +'" style="padding:2px 10px;height:30px;line-height:24px;" ">'+
+													'去支付'+
+													'</button>'+
+												'</div>'+
+							                     '</div>';
+							   }
+
+							    $('#all').html(item);
+								
+								$(".zf").click(function(){
+									var id = $(this).parents('.h_order').attr("id");//订单ID
+									window.location.href = "confirmorder.html?id="+id;
+								})
+								 
+								 $('.s_allshop').click(function(){
+								 	 var id = $(this).parents('.h_order').attr("id");//订单ID
+								 	  window.location.href='orderdetails.html?&id='+id;
+								 })
+								 $('.allproduct').click(function(){
+								 	 var id = $(this).parents('.h_order').attr("id");//订单ID
+								 	  window.location.href='allproduct.html?&id='+id;
+								 })
+								 
+						},
+						error : function (data) {
+						}
+					})
+				};
+		//全部 结束
+		
+		// //待支付 开始
+		function nopay(id) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/self/order',
+				data : {
+					uid:uid,
+					type:'nopay'
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					   //alert(JSON.stringify(data))
+					   var nopaybox = data.rows;
+						 var item='';
+					   for (var i=0;i<nopaybox.length;i++){
+					   					 // var url=domain+timebox[i].pic;
+										  item +='<div class="col-xs-12 bg_white b_r5 m_b15 h_order" id="'+nopaybox[i].id+'">' +
+										 '<div class="col-xs-12 b_b of h_35 p0">'+
+											'<span class="f_9">'+
+											nopaybox[i].orderTime+
+											'</span>'+
+											'<span class="pull-right">'+
+											nopaybox[i].state+
+											'</span>'+
+										 '</div>'+
+										 '<div class="col-xs-12 p0 h_40 block f_70 qbsp " >'+
+												 	'商品'+
+												 	'<span class="pull-right allproduct">'+
+													'共'+ 
+													'<em class="f_green m_l5 m_r5">'+
+													 nopaybox[i].detail.length +
+													'</em>'+
+													'件'+
+													'<em class="glyphicon glyphicon-menu-right">'+
+													'</em>'+
+													'</span>'+
+										'</div>'+
+										'<div class="s_allshop of col-xs-12 p0">';										 
+										
+										var det = nopaybox[i].detail;
+										//alert(JSON.stringify(det))
+										for(var j=0;j<det.length;j++){
+											   var url=domain+det[j].pic;
+											//计算每个商品的总价开始
+																									var totalprice='';
+																									var  price =det[j].price;
+																									var  productQuantity=det[j].productQuantity;
+																									totalprice=price*productQuantity
+											 //计算每个商品的总价结束										
+											
+											 item+='<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">'+
+												'<img src="'+url+'" class="pull-left"/>'+
+												'<div class="w_content pull-left">'+
+													'<div class="of">'+
+														'<h4 class="f14 pull-left m_t5 f_3 of">'+det[j].productName+'</h4>'+
+														'<span class="pull-right m_t5">'+'￥'+totalprice+'</span>'+
+													'</div>'+
+													'<div class="f12 f_9">'+
+														'<span>'+'单价：￥'+det[j].price+'/份'+'</span>'+
+														'<span class="m_l15">'+'数量：'+det[j].productQuantity+'份'+'</span>'+
+													'</div>'+
+												'</div>'+
+											' </div>';
+										}
+										    //'<img src="img/qs.png" class="qs '+ imgicon +'"/>'+
+											var waitfont = (nopaybox[i].state=='待支付')?'active':'hide';
+										 item+='</div>'+
+										 '<div class="text-right h_40 col-xs-12 p0">'+
+										 	'共'+'<span class="f_green m_l5 m_r5">'+
+										 	det.length+
+										 	'</span>'+
+										 	'件' +
+										 	'<span class="m_l10">'+
+											'需实付：￥'+ 
+										 	nopaybox[i].payable +
+										 	'</span>'+
+											'<button class="zf m_l10 bg_white b_box b_r5 '+ waitfont +'" style="padding:2px 10px;height:30px;line-height:24px;">'+
+											'去支付'+
+											'</button>'+
+										 '</div>'+
+										 '</div>'+
+										  '</div>';
+					   }
+					     $('#nopay').html(item);
+						 $('.s_allshop').click(function(){
+						 	 var id = $(this).attr("id");//订单ID
+						 	  window.location.href='orderdetails.html?&id='+id;
+						 })
+
+					$(".zf").click(function(){
+						var id = $(this).parents('.h_order').attr("id");//订单ID
+						window.location.href = "confirmorder.html?id="+id;
+					})
+					$('.s_allshop').click(function(){
+						 var id = $(this).parents('.h_order').attr("id");//订单ID
+						  window.location.href='orderdetails.html?&id='+id;
+					})
+					$('.allproduct').click(function(){
+						 var id = $(this).parents('.h_order').attr("id");//订单ID
+						  window.location.href='allproduct.html?&id='+id;
+					})
+				},
+				error : function (data) {
+				}
+			})
+		};
+		
+		
+		// //待支付 结束
+		
+		// //待发货 开始
+		function nosend(id) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/self/order',
+				data : {
+					uid:uid,
+					type:'nosend'
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					   //alert(JSON.stringify(data))
+					   var nosendbox = data.rows;
+						 var item='';
+					   for (var i=0;i<nosendbox.length;i++){
+					   					 // var url=domain+timebox[i].pic;
+					                     item += '<div class="col-xs-12 bg_white b_r5 m_b15" id="'+nosendbox[i].id+'">' +
+										 '<div class="col-xs-12 b_b of h_35 p0">'+
+											'<span class="f_9">'+
+											nosendbox[i].orderTime+
+											'</span>'+
+											'<span class="pull-right">'+
+											nosendbox[i].state+
+											'</span>'+
+										 '</div>'+
+										 '<div class="col-xs-12 p0 h_40 block f_70 qbsp " >'+
+										 		 	'商品'+
+										 		 	'<span class="pull-right allproduct">'+
+										 			'共'+ 
+										 			'<em class="f_green m_l5 m_r5">'+
+										 			 nosendbox[i].detail.length +
+										 			'</em>'+
+										 			'件'+
+										 			'<em class="glyphicon glyphicon-menu-right">'+
+										 			'</em>'+
+										 			'</span>'+
+										 '</div>'+
+										 '<div class="s_allshop of col-xs-12 p0">';
+										 
+										
+										var det= nosendbox[i].detail;
+										//alert(JSON.stringify(det))
+										for(var j=0;j<det.length;j++){
+											   var url=domain+det[i].pic;
+											   //计算每个商品的总价开始
+											   	var totalprice='';
+											   	var  price =det[j].price;
+											   	var  productQuantity=det[j].productQuantity;
+											   	totalprice=price*productQuantity
+											    //计算每个商品的总价结束	
+											 item+='<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">'+
+												'<img src="'+url+'" class="pull-left"/>'+
+												'<div class="w_content pull-left">'+
+													'<div class="of">'+
+														'<h4 class="f14 pull-left m_t5 f_3 of">'+det[i].productName+'</h4>'+
+														'<span class="pull-right m_t5">'+'￥'+totalprice+'</span>'+
+													'</div>'+
+													'<div class="f12 f_9">'+
+														'<span>'+'单价：￥'+det[i].price+'/份'+'</span>'+
+														'<span class="m_l15">'+'数量：'+det[i].productQuantity+'份'+'</span>'+
+													'</div>'+
+												'</div>'+
+											'</div>';
+										}
+										item+='</div>'+
+										'<div class="text-right h_40 col-xs-12">'+
+											'共'+'<span class="f_green m_l5 m_r5">'+
+											det.length+
+											'</span>'+
+											'件' +
+											'<span class="m_l10">'+
+											'实付：￥'+ 
+											nosendbox[i].price +
+											'</span>'+
+										'</div>'+
+										'</div>'+
+										 '</div>';
+					   }
+					     $('#nosend').html(item);
+						$('.s_allshop').click(function(){
+							 var id = $(this).parents('.h_order').attr("id");//订单ID
+							  window.location.href='orderdetails.html?&id='+id;
+						})
+						$('.allproduct').click(function(){
+							 var id = $(this).parents('.h_order').attr("id");//订单ID
+							  window.location.href='allproduct.html?&id='+id;
+						})
+				},
+				
+				error : function (data) {
+				}
+			})
+		};
+		
+		
+		
+		// //待发货 结束
+		
+		// //待收货 开始
+		function norec(id) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/self/order',
+				data : {
+					uid:uid,
+					type:'norec'
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					   //alert(JSON.stringify(data))
+					   var norecbox = data.rows;
+						 var item='';
+					   for (var i=0;i<norecbox.length;i++){
+					   					 // var url=domain+timebox[i].pic;
+					                     item += '<div class="col-xs-12 bg_white b_r5 m_b15 h_order"  id="'+norecbox[i].id+'">' +
+										 '<div class="col-xs-12 b_b of h_35 p0">'+
+											'<span class="f_9">'+
+											norecbox[i].orderTime+
+											'</span>'+
+											'<span class="pull-right">'+
+											norecbox[i].state+
+											'</span>'+
+										 '</div>'+
+										'<div class="col-xs-12 p0 h_40 block f_70 qbsp " >'+
+												 	'商品'+
+												 	'<span class="pull-right allproduct">'+
+													'共'+ 
+													'<em class="f_green m_l5 m_r5">'+
+													 norecbox[i].detail.length +
+													'</em>'+
+													'件'+
+													'<em class="glyphicon glyphicon-menu-right">'+
+													'</em>'+
+													'</span>'+
+										'</div>'+
+										'<div class="s_allshop of col-xs-12 p0">';
+										
+										var det = norecbox[i].detail;
+										for(var j=0;j<det.length;j++){
+											   var url=domain+det[j].pic;
+											   //计算每个商品的总价开始
+											   	var totalprice='';
+											   	var  price =det[j].price;
+											   	var  productQuantity=det[j].productQuantity;
+											   	totalprice=price*productQuantity
+											    //计算每个商品的总价结束	
+											 item+='<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">'+
+												'<img src="'+url+'" class="pull-left"/>'+
+												'<div class="w_content pull-left">'+
+													'<div class="of">'+
+														'<h4 class="f14 pull-left m_t5 f_3 of">'+det[j].productName+'</h4>'+
+														'<span class="pull-right m_t5">'+'￥'+totalprice+'</span>'+
+													'</div>'+
+													'<div class="f12 f_9">'+
+														'<span>'+'单价：￥'+det[j].price+'/份'+'</span>'+
+														'<span class="m_l15">'+'数量：'+det[j].productQuantity+'份'+'</span>'+
+													'</div>'+
+												'</div>'+
+											'</div>';
+										}
+										item+='</div>'+
+										'<div class="text-right h_40 col-xs-12">'+
+											'共'+'<span class="f_green m_l5 m_r5">'+
+											det.length+
+											'</span>'+
+											'件' +
+											'<span class="m_l10">'+
+											'实付：￥'+ 
+											norecbox[i].price +
+											'</span>'+
+										'</div>'+
+										'</div>'+
+										 '</div>';
+					   }
+					   
+					     $('#norec').html(item);
+						$('.s_allshop').click(function(){
+							 var id = $(this).parents('.h_order').attr("id");//订单ID
+							  window.location.href='orderdetails.html?&id='+id;
+						})
+						$('.allproduct').click(function(){
+							 var id = $(this).parents('.h_order').attr("id");//订单ID
+							  window.location.href='allproduct.html?&id='+id;
+						})
+				},
+				
+				error : function (data) {
+				}
+			})
+		};
+		// //待收货 结束
+		
+		// //已完成 开始
+		function finish(id) {
+			$.ajax({
+				type: 'post',
+				url: prefix + '/self/order',
+				data : {
+					uid:uid,
+					type:'finish'
+				},
+				async: false,
+				jsonp: 'jsoncallback',
+				success: function (data) {
+					   //alert(JSON.stringify(data))
+					   var finishbox = data.rows;
+						 var item='';
+					   for (var i=0;i<finishbox.length;i++){
+										 var imgicon = (finishbox[i].state=='已完成')?'active':'hide';
+										 											
+										 item += '<div class="col-xs-12 bg_white b_r5 m_b15 h_order" id="'+finishbox[i].id+'">' +
+										     '<img src="img/qs.png" class="qs '+ imgicon +'"/>'+
+										 '<div class="col-xs-12 b_b of h_35 p0">'+
+											'<span class="f_9">'+
+											finishbox[i].orderTime+
+											'</span>'+
+										 '</div>'+
+										 '<div class="col-xs-12 p0 h_40 block f_70 qbsp " >'+
+										 		 	'商品'+
+										 		 	'<span class="pull-right allproduct">'+
+										 			'共'+ 
+										 			'<em class="f_green m_l5 m_r5">'+
+										 			 finishbox[i].detail.length +
+										 			'</em>'+
+										 			'件'+
+										 			'<em class="glyphicon glyphicon-menu-right">'+
+										 			'</em>'+
+										 			'</span>'+
+										 '</div>'+
+										 '<div class="s_allshop of col-xs-12 p0">';
+									
+										var det = finishbox[i].detail;
+										for(var j=0;j<det.length;j++){
+											   var url=domain+det[j].pic;
+											   //计算每个商品的总价开始
+											   	var totalprice='';
+											   	var  price =det[j].price;
+											   	var  productQuantity=det[j].productQuantity;
+											   	totalprice=price*productQuantity
+											    //计算每个商品的总价结束	
+											 item+='<div class="col-xs-12 p_l0 p_r0 p_t10 p_b10 of b_b w_allorderbox">'+
+												'<img src="'+url+'" class="pull-left"/>'+
+												'<div class="w_content pull-left">'+
+													'<div class="of">'+
+														'<h4 class="f14 pull-left m_t5 f_3 of">'+det[j].productName+'</h4>'+
+														'<span class="pull-right m_t5">'+'￥'+totalprice+'</span>'+
+													'</div>'+
+													'<div class="f12 f_9">'+
+														'<span>'+'单价：￥'+det[j].price+'/份'+'</span>'+
+														'<span class="m_l15">'+'数量：'+det[i].productQuantity+'份'+'</span>'+
+													'</div>'+
+												'</div>'+
+											' </div>';
+										}
+										item+='</div>'+
+										'<div class="text-right h_40 col-xs-12">'+
+											'共'+'<span class="f_green m_l5 m_r5">'+
+											det.length+
+											'</span>'+
+											'件' +
+											'<span class="m_l10">'+
+											'实付：￥'+ 
+											finishbox[i].price +
+											'</span>'+
+										'</div>'+
+										'</div>'+
+										 '</div>';
+					   }
+					     $('#finish').html(item);
+						$('.s_allshop').click(function(){
+							 var id = $(this).parents('.h_order').attr("id");//订单ID
+							  window.location.href='orderdetails.html?&id='+id;
+						})
+						$('.allproduct').click(function(){
+							 var id = $(this).parents('.h_order').attr("id");//订单ID
+							  window.location.href='allproduct.html?&id='+id;
+						})
+				},
+				
+				error : function (data) {
+				}
+			})
+		};
+		// //已完成 结束
+		
+		$(function () {
+			all(id);
+			nopay(id);
+			nosend(id)
+			norec(id);
+		   finish(id)
+		});
+	</script>
+</body>
+</html>
